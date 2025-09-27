@@ -1,22 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data Mahasiswa</title>
-</head>
-<body>
-    <h1>Tambah Mahasiswa</h1>
-    <form method="POST" action="/mahasiswa">
-        @csrf
-        <input type="text" name="nama" placeholder="Nama"><br>
-        <input type="text" name="nim" placeholder="NIM"><br>
-        <button type="submit">Simpan</button>
-    </form>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Data Mahasiswa') }}
+        </h2>
+    </x-slot>
+    <div class="py-12">
+        <div class="max-w-7x1 mx-autto sm:px-6 lg:px-8">
 
-    <h2>List Mahasiswa</h2>
-    <ul>
-        @foreach($data as $mhs)
-            <li>{{ $mhs->nama }} - {{ $mhs->nim }}</li>
-        @endforeach
-    </ul>
-</body>
-</html>
+            {{-- Form Tambah  Mahasiswa--}}
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadown-sm sm:rounded-lg mb-6">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h3 class="font-semibold text-lg mb-4">Tambah Mahasiswa</h3>
+                    <form method="POST" action="{{ route('mahasiswa.store') }}" class="space-y-4">
+                        @csrf
+                        <input type="text" name="nama" placeholder="Nama" class="border-gray-300 rounded-md w-full">
+                        <input type="text" name="nim" placeholder="NIM" class="border-gray-300 rounded-md w-full">
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                        Simpan
+                        </button> 
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</x-app-layout>

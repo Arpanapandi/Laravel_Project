@@ -1,22 +1,14 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-use App\Models\Mahasiswa;
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
-class MahasiswaController extends Controller
+class Controller extends BaseController
 {
-    public function index()
-    {
-        $data = Mahasiswa::all();
-        return view('mahasiswa.index', compact('data'));
-    }
-
-    public function store(Request $request)
-    {
-        Mahasiswa::create($request->only('nama', 'nim'));
-        return redirect()->back();
-    }
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
-
