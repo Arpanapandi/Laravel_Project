@@ -26,6 +26,14 @@
                             class="border rounded w-full px-3 py-2">
                     </div>
 
+                    <!-- KELAS -->
+                    <select name="kelas_id" class="border rounded px-3 py-2 w-1/3" required>
+                        <option value="">-- Pilih Kelas --</option>
+                        @foreach($kelas as $k)
+                            <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
+                        @endforeach
+                    </select>
+
                     <!-- Tombol -->
                     <button type="submit"
                         class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">

@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             {{-- Form Tambah Ruangan --}}
-            <div class="bg-white dark:bg-blue-600 shadow sm:rounded-lg p-6 mb-6">
+            <div class="bg-white dark:bg-white-600 shadow sm:rounded-lg p-6 mb-6">
                 <h3 class="font-semibold text-lg mb-4">Tambah Ruangan</h3>
                 <form action="{{ route('ruangan.store') }}" method="POST">
                     @csrf
@@ -22,11 +22,11 @@
             </div>
 
             {{-- List Ruangan --}}
-            <div class="bg-white dark:bg-blue-600 shadow sm:rounded-lg">
+            <div class="bg-white dark:bg-white-600 shadow sm:rounded-lg">
                 <div class="p-6">
                     <h3 class="font-semibold text-lg mb-4">List Ruangan</h3>
                     <table class="table-auto w-full border">
-                        <thead class="bg-gray-200 text-gray-700">
+                        <thead class="bg-gray-100 text-gray-700">
                             <tr>
                                 <th class="px-4 py-2 text-center w-16">No</th>
                                 <th class="px-4 py-2">Nama Ruangan</th>
