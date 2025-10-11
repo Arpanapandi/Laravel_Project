@@ -38,24 +38,35 @@ class MahasiswaController extends Controller
 
     // edit
     public function edit($id)
-    {
-        $mhs = Mahasiswa::findOrFail($id);
-        return view('mahasiswa.edit', compact('mhs'));
-    }
+{
+    $mhs = Mahasiswa::findOrFail($id);
+    $kelas = Kelas::all(); // ambil semua data kelas
+    return view('mahasiswa.edit', compact('mhs', 'kelas'));
+}
+
 
     //Update
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'nim' => 'required',
-        ]);
+    // App\Http\Controllers\MahasiswaController.php
 
-        $mhs = Mahasiswa::findOrFail($id);
-        $mhs->update($request->only('nama','nim'));
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'nama' => 'required|string|max:255',
+        // validasi nim unik kecuali record saat ini
+        'nim' => "required|string|max:50|unique:mahasiswa,nim,{$id}",
+        // kelas_id boleh nullable tapi harus mengacu ke tabel kelas jika diisi
+        'kelas_id' => 'nullable|exists:kelas,id',
+    ]);
 
-        return redirect()->route('mahasiswa.index')->with('succes','Data berhasil di update!');
-    }
+    $mhs = Mahasiswa::findOrFail($id);
+
+    // dua cara: mass assignment atau assign manual. Mass assignment oke karena 'kelas_id' ada di $fillable
+    $mhs->update($request->only('nama', 'nim', 'kelas_id'));
+
+    // konsisten gunakan 'success' (bukan 'succes')
+    return redirect()->route('mahasiswa.index')->with('success', 'Data berhasil diupdate!');
+}
+
 
     //Delete
     public function destroy($id)

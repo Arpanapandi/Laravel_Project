@@ -55,7 +55,7 @@
                                     <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
                                     <td class="border px-4 py-2">{{ $mhs->nama }}</td>
                                     <td class="border px-4 py-2">{{ $mhs->nim }}</td>
-                                    <td class="border px-4 py-2">{{ $mhs->nama_kelas ?? '-' }}</td>
+                                    <td class="border px-4 py-2">{{ $mhs->kelas->nama_kelas ?? '-' }}</td>
                                     </td>
                                     <td class="border px-4 py-2 text-center">
                                         <a href="{{ route('mahasiswa.edit', $mhs->id) }}"

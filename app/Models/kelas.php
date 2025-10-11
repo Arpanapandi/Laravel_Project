@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
 {
-    use HasFactory;
+    protected $table = 'kelas';
 
-    protected $fillable = ['nama_kelas'];
+    protected $fillable = [
+        'nama_kelas'
+    ];
 
     // Relasi ke Mahasiswa
     public function mahasiswa()
     {
-        return $this->hasMany(Mahasiswa::class, 'kelas_id');
+        return $this->hasMany(Mahasiswa::class);
     }
 }
