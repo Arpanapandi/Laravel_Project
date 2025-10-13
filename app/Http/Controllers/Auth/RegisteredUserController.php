@@ -41,10 +41,13 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+
         event(new Registered($user));
 
+        // Login otomatis setelah registrasi
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Arahkan langsung ke halaman eKYC Step 1
+        return redirect('/ekyc/step1');
     }
 }

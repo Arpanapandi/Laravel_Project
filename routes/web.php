@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\StudentRegisterController;
+use App\Http\Controllers\EkycController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\RuanganController;
@@ -50,8 +52,27 @@ Route::middleware('auth')->group(function () {
     Route::get('/dosen/{id}/edit', [DosenController::class,'edit'])->name('dosen.edit');
     Route::put('/dosen/{id}',[DosenController::class,'update'])->name('dosen.update');
     Route::delete('/dosen/{id}', [DosenController::class,'destroy'])->name('dosen.destroy');
+    
 
-
+   
 });
 
 require __DIR__.'/auth.php';
+
+     //Student register
+    Route::get('/register-mahasiswa',[StudentRegisterController::class,'showRegistrationForm'])->name('register.mahasiswa');
+    Route::post('/register-mahasiswa',[StudentRegisterController::class,'register']);
+
+    Route::middleware(['auth'])->prefix('ekyc')->group(function() {
+        // step1
+        Route::get('step1',[EkycController::class, 'step1'])->name('ekyc.step1');
+        Route::post('step1',[EkycController::class,'storeStep1'])->name('ekyc.storeStep1');
+
+        // step2
+        Route::get('/ekyc/step2', [EkycController::class, 'step2'])->name('ekyc.step2');
+        Route::post('/ekyc/step2', [EkycController::class, 'storeStep2'])->name('ekyc.step2.store');
+
+        // step3
+        Route::get('/ekyc/step3', [EkycController::class, 'showStep3'])->name('ekyc.step3');
+        Route::post('/ekyc/step3', [EkycController::class, 'storeStep3'])->name('ekyc.step3.store');
+    });
