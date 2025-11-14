@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\masterAlamat;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
         KelasSeeder::class,
         MahasiswaSeeder::class,
         UserSeeder::class, 
+        MasterAlamatSeeder::class,
     ]);
 }
 

@@ -11,21 +11,9 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
-    public function create(): View
-    {
-        return view('auth.login');
-    }
-
-    /**
-     * Handle an incoming authentication request.
-     */
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
         $user = Auth::user();
@@ -35,20 +23,15 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return redirect()->intended(route('dashboard', absolute: false));
-    }
+        // Ambil data eKYC milik user yang login
+        $ekyc = \app\Models\EkycRegistration::where('user_id',auth()->id())->first();
 
-    /**
-     * Destroy an authenticated session.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        Auth::guard('web')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        if ($ekyc && $ekyc->status === 'submitted') {
+            // jika eKYC sudah selesai
+            return redirect()->route('ekyc.step5');
+        } else {
+            // jika belum ada atau belum selesai
+            return redirect()->route('ekyc.step1');
+        }
     }
 }
