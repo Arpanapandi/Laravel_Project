@@ -26,29 +26,8 @@
             </div>
 
             <div class="flex gap-3">
-<div class="flex gap-3">
-    @if (Route::has('login'))
-        @auth
-            <a href="{{ url('/dashboard') }}"
-               class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700">
-                Dashboard
-            </a>
-        @else
-            <a href="{{ route('login') }}"
-               class="px-4 py-2 text-blue-600 font-semibold">
-                Log in
-            </a>
-
-            @if (Route::has('register'))
-                <a href="{{ route('register') }}"
-                   class="bg-blue-600 px-6 py-3 text-white rounded-lg font-medium hover:bg-blue-700">
-                    Daftar Sekarang
-                </a>
-            @endif
-        @endauth
-    @endif
-</div>
-
+                <a href="#login" class="px-4 py-2 text-blue-600 font-semibold">Login</a>
+                <a href="#daftar" class="bg-blue-600 px-4 py-2 text-white rounded-lg font-medium hover:bg-blue-700">Daftar</a>
             </div>
 
         </div>
@@ -69,20 +48,13 @@
                 </p>
 
                 <div class="flex gap-4">
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                        class="bg-blue-600 px-6 py-3 text-white rounded-lg font-medium hover:bg-blue-700">
-                            Daftar Sekarang
-                        </a>
-                    @endif  
-                        <a href="#program" class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg font-semibold text-lg hover:bg-blue-50">Lihat Program</a>
+                    <a href="#daftar" class="bg-blue-600 px-6 py-3 text-white rounded-lg font-semibold text-lg hover:bg-blue-700">Daftar</a>
+                    <a href="#program" class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg font-semibold text-lg hover:bg-blue-50">Lihat Program</a>
                 </div>
             </div>
 
-            <!-- image -->
             <div class="flex justify-center">
-                <img src="{{ asset('/storage/image/landing/hero-lp3i.jpg') }}" alt="Mahasiswa LP3I" 
-                class="w-full max-w-2xl object-cover object-cover rounded-xl shadow-lg" />
+            <img src="{{ asset('storage/image/landing/hero-lp3i.jpg') }}" alt="Mahasiswa LP3I" class="w-full max-w-2xl object-cover object-cover rounded-xl shadow-lg" />
             </div>
 
         </div>
@@ -132,7 +104,7 @@
             </div>
 
             <div>
-                <img src="{{ asset('/storage/image/landing/mahasiswa-lp3i.jpg') }}" class="rounded-xl shadow-lg" />
+                <img src="{{ asset('storage/image/landing/mahasiswa-lp3i.png') }}" class="rounded-xl shadow-lg" />
             </div>
 
         </div>

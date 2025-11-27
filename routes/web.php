@@ -7,6 +7,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\Admin\EkycAdminController;
 use App\Models\ruangan;
 use Illuminate\Support\Facades\Route;
 
@@ -53,7 +54,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/dosen/{id}',[DosenController::class,'update'])->name('dosen.update');
     Route::delete('/dosen/{id}', [DosenController::class,'destroy'])->name('dosen.destroy');
     
-
+    // admin
+    Route::prefix('admin')->group(function (){
+        Route::get('ekyc', [EkycAdminController::class, 'index'])->name('admin.ekyc.index');
+        Route::get('ekyc/{id}', [EkycAdminController::class, 'show'])->name('admin.ekyc.show');
+        Route::post('/ekyc/{id}/verify', [EkycAdminController::class, 'verify'])->name('admin.ekyc.verify');
+    });
    
 });
 
